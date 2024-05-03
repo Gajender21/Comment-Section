@@ -1,0 +1,45 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container{
+  height: 100%;
+  width: 100%;
+  background-color: #242424;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comment-section{
+  background-color: aliceblue;
+  height:100%;
+  width: 80%;
+  display: flex;
+  
+  flex-direction: column;
+  align-items: center;
+
+  /* justify-content: center; */
+}
+.add-comment{
+  height: 100%;
+  width: 100%;
+ margin-top: 10px;
+}
+/* .comments{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border:1px solid #242424;
+
+} */
+.comment{
+  margin-top: 10px;
+  border:1px solid #242424;
+}
+input{
+  height: 50px;
+  
+}
