@@ -52,7 +52,7 @@ const Comments = () => {
 
   return (
 
-    <div className="comment-section">
+    <div className="comment-section min-h-screen">
       <div className="w-fit  flex flex-col min-w-[50%] mt-10 gap-2 ">
         <input
           className="w-full border-[1px]  border-zinc-950"
@@ -77,9 +77,9 @@ const Comments = () => {
             
         }}>Add</button>
       </div>
-    <div className="border-[1px] min-w-[50%] border-zinc-950 w-max"> {allComments.map((item) => {
+    <div className=" min-w-[50%] "> {allComments.map((item) => {
         return (
-       <Replies key={item.id.toString()} item={item} />
+       <Replies  key={item.id.toString()} item={item} />
         );
       })}</div> 
     </div>

@@ -27,7 +27,7 @@ const Replies = ({ item }: { item: items }) => {
     setStoreReply("");
   }
   return (
-    <div key={data.id.toString()} className="mt-5 ml-5 w-auto mb-4 ">
+    <div key={data.id.toString()} className="mt-5 ml-5 w-auto mb-4 border-l-[1px] border-zinc-950  ">
       <input className="w-full " type="text" value={data.comment} readOnly />
       <div className="flex">
       {!showReply ? (
