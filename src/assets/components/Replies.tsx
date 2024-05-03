@@ -8,23 +8,26 @@ const Replies = ({ item }: { item: items }) => {
   const [showReply, setShowReply] = useState(false);
 
   function ReplyHandler() {
-    setdata((prev) => {
-      return {
-        id: prev.id,
-        comment: prev.comment,
-        items: [
-          ...prev.items,
-          {
-            id: Math.random() * 100,
-            comment: storeReply,
-            items: [],
-          },
-        ],
-      };
-    });
-    setShowReply(true);
-    setShowReplyInput(false);
-    setStoreReply("");
+    if (storeReply!=="") {
+      setdata((prev) => {
+        return {
+          id: prev.id,
+          comment: prev.comment,
+          items: [
+            ...prev.items,
+            {
+              id: Math.random() * 100,
+              comment: storeReply,
+              items: [],
+            },
+          ],
+        };
+      });
+      setShowReply(true);
+      setShowReplyInput(false);
+      setStoreReply("");
+    }
+   
   }
   return (
     <div key={data.id.toString()} className="mt-5 ml-5 w-auto mb-4 border-l-[1px] border-zinc-950  ">

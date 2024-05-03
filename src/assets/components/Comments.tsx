@@ -75,7 +75,7 @@ const Comments = () => {
               setAddComment("");
             }
             
-        }}>Add</button>
+        }}>Comment</button>
       </div>
     <div className=" min-w-[50%] "> {allComments.map((item) => {
         return (
