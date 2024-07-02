@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { items } from "./Comments";
+import { useLocalStorage } from "./Action";
 
-const Replies = ({ item }: { item: items }) => {
+const Replies = ({ item ,replyChange}: { item: items  ,replyChange:any}) => {
   const [data, setdata] = useState(item);
   const [showReplyInput, setShowReplyInput] = useState(false);
   const [storeReply, setStoreReply] = useState("");
   const [showReply, setShowReply] = useState(false);
-
   function ReplyHandler() {
     if (storeReply!=="") {
       setdata((prev) => {
@@ -23,9 +23,11 @@ const Replies = ({ item }: { item: items }) => {
           ],
         };
       });
+
       setShowReply(true);
       setShowReplyInput(false);
       setStoreReply("");
+      replyChange();
     }
    
   }
@@ -83,6 +85,7 @@ const Replies = ({ item }: { item: items }) => {
           <button
             className="border-[1px] rounded-full p-1"
             onClick={ReplyHandler}
+            
           >
             Reply
           </button>
@@ -90,7 +93,7 @@ const Replies = ({ item }: { item: items }) => {
       )}
       {showReply && data.items &&
         data.items.map((i) => {
-          return <Replies key={i.id.toString()} item={i} />;
+          return <Replies key={i.id.toString()} item={i} replyChange={replyChange}/>;
         })}
     </div>
   );

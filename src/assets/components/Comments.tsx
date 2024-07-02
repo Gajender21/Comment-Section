@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Replies from "./Replies";
+import {  useLocalStorage } from "./Action";
 export type items = {
   id: Number;
   comment: string;
@@ -27,32 +28,42 @@ const Comments = () => {
       ],
     },
   ];
+  const { setItem , getItem } = useLocalStorage("comment-section")
+
+  setItem(commentsdata);
+  const data = getItem()
   const [addComment, setAddComment] = useState("");
-  const [allComments, setAllComments] = useState<CommentData>(commentsdata);
-
-
+  const [allComments, setAllComments] = useState<CommentData>(data);
+  const [replyChange, setReplyChange] = useState(false)
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAddComment(event.target.value);
   };
+  useEffect(()=>{
+     setItem(allComments)
+  },[addComment,replyChange])
 
   function onAddComment() {
-    if (addComment !== "") {
-      setAllComments((prev: any) => {
-        return [
-          {
-            id: Math.random() * 100,
-            comment: addComment,
-            items: [],
-          },
-          ...prev,
-        ];
-      });
-    }
+    console.log(allComments);
+    
+ setReplyChange(true)
+    // if (addComment !== "") {
+    //   setAllComments((prev: any) => {
+    //     return [
+    //       {
+    //         id: Math.random() * 100,
+    //         comment: addComment,
+    //         items: [],
+    //       },
+    //       ...prev,
+    //     ];
+    //   });
+      
+    // }
   }
 
   return (
 
-    <div className="comment-section min-h-screen">
+    <div className="comment-section min-h-screen bg-zinc-500">
       <div className="w-fit  flex flex-col min-w-[50%] mt-10 gap-2 ">
         <input
           className="w-full border-[1px]  border-zinc-950"
@@ -73,13 +84,14 @@ const Comments = () => {
                 ];
               });
               setAddComment("");
+              
             }
             
         }}>Comment</button>
       </div>
     <div className=" min-w-[50%] "> {allComments.map((item) => {
         return (
-       <Replies  key={item.id.toString()} item={item} />
+       <Replies  key={item.id.toString()} item={item}  replyChange={onAddComment}/>
         );
       })}</div> 
     </div>
